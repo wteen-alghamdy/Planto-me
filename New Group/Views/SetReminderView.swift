@@ -436,7 +436,7 @@ struct SetReminderView: View {
                 Spacer()
                 Text("Set Reminder")
                     .foregroundStyle(.white)
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.system(size: 16, weight: .semibold))
                 Spacer()
                 // ✅ green check, not black
                 CircleButton(style: .confirm) { onSave(form.buildPlant()) }
@@ -527,14 +527,20 @@ struct SetReminderView: View {
             }
             .padding(.horizontal, 14)
 
+            
+            
+            
+            
+            
             if form.isEditing, let onDelete {
                 Button(role: .destructive) { onDelete() } label: {
                     Text("Delete Reminder")
-                        .frame(maxWidth: .infinity)
+                        .frame(width: 320, height: 10)
                         .padding(.vertical, 14)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.red.opacity(0.95))
+                .foregroundStyle(.red)
+                .tint(CareBackground.opacity(0.95))
                 .clipShape(Capsule())
                 .padding(.horizontal, 16)
                 .padding(.top, 2)
@@ -559,6 +565,7 @@ private struct Card<Content: View>: View {
     var body: some View {
         VStack(spacing: 0) { content }
             .padding(12)
+            .frame(width: 380, height: 100)
             .background(CareBackground) // ✅ card background
             .clipShape(RoundedRectangle(cornerRadius: rounding, style: .continuous))
     }
@@ -592,8 +599,8 @@ private struct ValueLabel: View {
     var body: some View {
         HStack(spacing: 6) {
             Text(text)
-                .foregroundStyle(.white.opacity(0.9))
-                .font(.system(size: 17, weight: .semibold))
+                .foregroundStyle(.gray.opacity(0.9))
+                .font(.system(size: 17, weight: .regular))
             Image(systemName: "chevron.up.chevron.down")
                 .font(.system(size: 10, weight: .bold))
                 .foregroundStyle(.white.opacity(0.7))

@@ -104,7 +104,7 @@ struct CustomHeaderView: View {
         VStack(spacing: 0) {
             HStack {
                 Text(title)
-                    .font(.system(size: 34, weight: .bold, design: .rounded))
+                    .font(.system(size: 34, weight: .bold,))
                     .foregroundStyle(.white)
                     .lineLimit(1)
                                     Spacer(minLength: 0)

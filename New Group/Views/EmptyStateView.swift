@@ -212,7 +212,7 @@ struct EmptyStateView: View {
                     
                     VStack(spacing: 8) {
                     Text("Start your plant journey!")
-                        .font(.system(size: 26, weight: .bold, design: .rounded))
+                        .font(.system(size: 26, weight: .bold,))
                         .foregroundStyle(.white)
                         .padding(.top, 2)
                     
