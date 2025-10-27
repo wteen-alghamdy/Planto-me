@@ -633,3 +633,6 @@ private struct CircleButton: View {
         .buttonStyle(.plain)
     }
 }
+#Preview {
+    ContentView()
+}

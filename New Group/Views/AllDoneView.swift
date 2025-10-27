@@ -52,6 +52,7 @@
 
 
 
+
 import SwiftUI
 
 struct AllDoneView: View {
@@ -61,16 +62,22 @@ struct AllDoneView: View {
             Image("WinkingPlant")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 220, height: 220)
+                .frame(width: 350, height: 350)
+            
+            
             Text("All Done! 🎉")
-                .font(.system(size: 28, weight: .bold, design: .rounded))
+                .font(.system(size: 28, weight: .bold, ))
                 .foregroundStyle(.white)
-                .padding(.top, 10)
+                .padding(.top, 0)
             Text("All Reminders Completed")
                 .foregroundStyle(.white.opacity(0.6))
-                .padding(.top, 4)
-            Spacer()
+                .padding(.top, 0)
+            Spacer(minLength: 200)
         }
         .background(BackgroundDark)
     }
 }
+#Preview {
+    ContentView()
+}
+

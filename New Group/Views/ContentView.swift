@@ -68,3 +68,6 @@ struct ContentView: View {
         .environmentObject(vm)
     }
 }
+#Preview {
+    ContentView()
+}

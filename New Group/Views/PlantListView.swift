@@ -128,6 +128,66 @@
 
 
 
+//import SwiftUI
+//
+//struct PlantListView: View {
+//    @EnvironmentObject var vm: PlantListViewModel
+//    @State private var editingPlant: Plant?
+//
+//    var body: some View {
+//        VStack(spacing: 0) {
+//            ProgressHeaderView().environmentObject(vm)
+//
+//            List {
+//                Section {
+//                    ForEach(vm.dueToday) { plant in
+//                        PlantRowView(plant: plant, onToggle: { vm.toggleDone(plant) })
+//                            .listRowBackground(BackgroundDark)
+//                            .contentShape(Rectangle())
+//                            .onTapGesture { editingPlant = plant }
+//                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+//                                Button(role: .destructive) {
+//                                    if let idx = vm.plants.firstIndex(of: plant) {
+//                                        vm.delete(at: IndexSet(integer: idx))
+//                                    }
+//                                } label: { Image(systemName: "trash") }
+//                            }
+//                    }
+//                } header: {
+//                    Text("Today")
+//                        .foregroundStyle(.white.opacity(0.65))
+//                        .font(.system(size: 14, weight: .semibold))
+//                }
+//            }
+//            .listStyle(.plain)
+//            .scrollContentBackground(.hidden)
+//            .background(BackgroundDark)
+//        }
+//        .background(BackgroundDark)
+//        .sheet(item: $editingPlant) { item in
+//            SetReminderView(
+//                existing: item,
+//                onSave: { vm.update($0); editingPlant = nil },
+//                onCancel: { editingPlant = nil },
+//                onDelete: { vm.delete(id: item.id); editingPlant = nil }
+//            )
+//        }
+//    }
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+// PlantListView.swift
+
 import SwiftUI
 
 struct PlantListView: View {
@@ -139,24 +199,20 @@ struct PlantListView: View {
             ProgressHeaderView().environmentObject(vm)
 
             List {
-                Section {
-                    ForEach(vm.dueToday) { plant in
-                        PlantRowView(plant: plant, onToggle: { vm.toggleDone(plant) })
-                            .listRowBackground(BackgroundDark)
-                            .contentShape(Rectangle())
-                            .onTapGesture { editingPlant = plant }
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                Button(role: .destructive) {
-                                    if let idx = vm.plants.firstIndex(of: plant) {
-                                        vm.delete(at: IndexSet(integer: idx))
-                                    }
-                                } label: { Image(systemName: "trash") }
-                            }
-                    }
-                } header: {
-                    Text("Today")
-                        .foregroundStyle(.white.opacity(0.65))
-                        .font(.system(size: 14, weight: .semibold))
+                // FIX: Removed the 'Section' and 'header' to list items directly,
+                // matching the UI design where 'Today' text is not present.
+                ForEach(vm.displayPlants) { plant in
+                    PlantRowView(plant: plant, onToggle: { vm.toggleDone(plant) })
+                        .listRowBackground(BackgroundDark)
+                        .contentShape(Rectangle())
+                        .onTapGesture { editingPlant = plant }
+                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                            Button(role: .destructive) {
+                                if let idx = vm.plants.firstIndex(of: plant) {
+                                    vm.delete(at: IndexSet(integer: idx))
+                                }
+                            } label: { Image(systemName: "trash") }
+                        }
                 }
             }
             .listStyle(.plain)
@@ -174,3 +230,7 @@ struct PlantListView: View {
         }
     }
 }
+#Preview {
+    ContentView()
+}
+
