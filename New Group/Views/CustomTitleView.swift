@@ -77,12 +77,12 @@
 
 
 // (Optional helper if you want a reusable title style elsewhere)
-import SwiftUI
-struct CustomTitleView: View {
-    let text: String
-    var body: some View {
-        Text(text)
-            .font(.system(size: 28, weight: .bold, design: .rounded))
-            .foregroundStyle(.white)
-    }
-}
+//import SwiftUI
+//struct CustomTitleView: View {
+//    let text: String
+//    var body: some View {
+//        Text(text)
+//            .font(.system(size: 28, weight: .bold, design: .rounded))
+//            .foregroundStyle(.white)
+//    }
+//}

@@ -153,14 +153,22 @@ struct ProgressHeaderView: View {
 
     private var title: String {
         let c = vm.completedTodayCount
-       
         let t = vm.totalPlantsDueToday
         
         // Removed unused 'let remaining = t - c'
 
-        if t == 0 { return "Your plants are waiting for a sip 💦" }
+        if t > 0 && c == 0 {
+                return "Your plants are waiting for a sip 💦"
+            }
         
-        if c == t { return "All your plants feel loved today! 💚" }
+        
+        if t == 0 { return "Your plants are waiting for a sip 💦"
+        }
+        
+        
+        if c == t { return "All your plants feel loved today! 💚"
+        }
+        
         
         return "\(c) of your plants feel loved today ✨"
     }

@@ -228,9 +228,123 @@
 
 // PlantRowView.swift
 
+//import SwiftUI
+//
+//struct PlantRowView: View {
+//    let plant: Plant
+//    let onToggle: () -> Void
+//    let icon: String
+//    let text: String
+//    let iconColor: Color
+//
+//    var isCompleted: Bool { plant.doneToday() }
+//    
+//    var body: some View {
+//        HStack(alignment: .top, spacing: 12) {
+//
+//            CheckButton(checked: isCompleted, action: onToggle)
+//            
+//            // 2. Plant Details (VStack)
+//            VStack(alignment: .leading, spacing: 8) {
+//
+//                // location label
+//                HStack(spacing: 8) {
+//                    Image(systemName: "paperplane")
+//                        .font(.system(size: 13, weight: .regular))
+//                        .foregroundStyle(.white.opacity(0.6))
+//                    Text("in \(plant.room.rawValue)")
+//                        .font(.system(size: 13))
+//                        .foregroundStyle(.white.opacity(0.6))
+//                    Spacer()
+//                }
+//
+//                // name
+//                Text(plant.name)
+//                    .font(.system(size: 28, weight: .regular, design: .rounded))
+//                    .foregroundStyle(.white)
+//                    .lineLimit(1)
+//                    .padding(.top, 2)
+//
+//                ZStack{
+//                    // tags
+//                    HStack(spacing: 8) {
+//                        // Light Tag (Yellow/Sun color)
+//                        Tag(icon: plant.light.icon, text: plant.light.rawValue, iconColor: Color.yellow.opacity(0.7))
+//                        // Water Tag (AccentTeal color)
+//                        Tag(icon: "drop.fill", text: plant.water.rawValue, iconColor: AccentTeal)
+//                    }
+//                    
+//                    RoundedRectangle(cornerRadius: 14)
+//                                    .fill(Color.primary.opacity(0.08))
+//                                    .overlay(
+//                                        RoundedRectangle(cornerRadius: 14)
+//                                            .stroke(Color.primary.opacity(0.08), lineWidth: 1))
+//
+//                }
+//            }
+//            // ✅ FIX: Apply opacity ONLY to the details VStack
+//            .opacity(isCompleted ? 0.4 : 1.0)
+//            
+//            Spacer(minLength: 0)
+//        }
+//        .padding(.vertical, 10)
+//        .listRowSeparator(.hidden)
+//    }
+//}
+//
+//// MARK: - Helper Components (Required for PlantRowView to compile)
+//
+//struct CheckButton: View {
+//    let checked: Bool
+//    let action: () -> Void
+//    var body: some View {
+//        Button(action: action) {
+//            ZStack {
+//                // Outer circle border (fades slightly with the row, but remains visible)
+//                Circle().strokeBorder(.white.opacity(0.5), lineWidth: 2).frame(width: 22, height: 22)
+//                if checked {
+//                    // Checkmark is always filled with AccentTeal when checked
+//                    Circle().fill(AccentTeal).frame(width: 22, height: 22)
+//                    Image(systemName: "checkmark")
+//                        .font(.system(size: 12, weight: .bold))
+//                        .foregroundStyle(.black)
+//                }
+//            }
+//        }
+//        .buttonStyle(.plain)
+//    }
+//}
+//
+//struct Tag: View {
+//    let icon: String
+//    let text: String
+//    let iconColor: Color // Used for the icon
+//    var body: some View {
+//        HStack(spacing: 6) {
+//            Image(systemName: icon)
+//                .foregroundStyle(iconColor)
+//            Text(text)
+//        }
+//        .font(.system(size: 12, weight: .semibold))
+//        .foregroundStyle(.white.opacity(0.7))
+//        .padding(.horizontal, 10)
+//        .padding(.vertical, 6)
+//        .background(.white.opacity(0.08))
+//        .clipShape(Capsule())
+//    }
+//}
+//#Preview {
+//    ContentView()
+//}
+
+
+
+// PlantRowView.swift
+
 import SwiftUI
 
 struct PlantRowView: View {
+    // ✅ CORRECT PROPERTIES: Only the necessary properties for the row
     let plant: Plant
     let onToggle: () -> Void
 
@@ -239,6 +353,7 @@ struct PlantRowView: View {
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
 
+            // 1. Check Button - NOT FADED
             CheckButton(checked: isCompleted, action: onToggle)
             
             // 2. Plant Details (VStack)
@@ -257,20 +372,22 @@ struct PlantRowView: View {
 
                 // name
                 Text(plant.name)
-                    .font(.system(size: 28, weight: .regular, design: .rounded))
+                    .font(.system(size: 28, weight: .regular, ))
                     .foregroundStyle(.white)
                     .lineLimit(1)
                     .padding(.top, 2)
 
                 // tags
+                
                 HStack(spacing: 8) {
                     // Light Tag (Yellow/Sun color)
                     Tag(icon: plant.light.icon, text: plant.light.rawValue, iconColor: Color.yellow.opacity(0.7))
                     // Water Tag (AccentTeal color)
-                    Tag(icon: "drop.fill", text: plant.water.rawValue, iconColor: AccentTeal)
+                    Tag(icon: "drop.fill", text: plant.water.rawValue, iconColor: Color.blue.opacity(0.7))
+
                 }
             }
-            // ✅ FIX: Apply opacity ONLY to the details VStack
+            // ✅ Apply opacity ONLY to the details VStack
             .opacity(isCompleted ? 0.4 : 1.0)
             
             Spacer(minLength: 0)
@@ -279,6 +396,7 @@ struct PlantRowView: View {
         .listRowSeparator(.hidden)
     }
 }
+
 
 // MARK: - Helper Components (Required for PlantRowView to compile)
 
@@ -318,7 +436,7 @@ struct Tag: View {
         .padding(.horizontal, 10)
         .padding(.vertical, 6)
         .background(.white.opacity(0.08))
-        .clipShape(Capsule())
+        .clipShape(Capsule()) // This creates the rounded background matching the UI
     }
 }
 #Preview {

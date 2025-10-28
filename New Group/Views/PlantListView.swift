@@ -207,11 +207,22 @@ struct PlantListView: View {
                         .contentShape(Rectangle())
                         .onTapGesture { editingPlant = plant }
                         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                            Button(role: .destructive) {
+                            Button(role: .destructive)
+                            {
                                 if let idx = vm.plants.firstIndex(of: plant) {
                                     vm.delete(at: IndexSet(integer: idx))
                                 }
-                            } label: { Image(systemName: "trash") }
+                            } label: {
+                                Circle()
+                            .fill(Color.red)
+                            .frame(width: 48, height: 48)
+                            .overlay {
+                                               
+                            Image(systemName: "trash")
+                            .font(.title2)
+                            .foregroundStyle(.white)
+                                }
+                            }
                         }
                 }
             }

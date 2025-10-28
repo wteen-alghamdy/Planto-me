@@ -18,6 +18,7 @@ struct AddFloatingButton: View {
                 Image(systemName: "plus")
                     .font(.system(size: 26, weight: .bold))
                     .foregroundStyle(.white)
+//                    .glassEffect(.clear)
             }
         }
         .padding(.trailing, 22)
